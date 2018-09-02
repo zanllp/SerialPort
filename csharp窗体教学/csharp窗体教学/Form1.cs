@@ -1151,6 +1151,10 @@ namespace csharp窗体教学
             pictureBox5.Refresh();//马上刷新
         }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+           
+        }
     }
 }
 
