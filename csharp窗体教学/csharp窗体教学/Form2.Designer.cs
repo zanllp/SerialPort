@@ -395,7 +395,6 @@
             this.serial_read_way.Name = "serial_read_way";
             this.serial_read_way.Size = new System.Drawing.Size(104, 20);
             this.serial_read_way.TabIndex = 35;
-            this.serial_read_way.SelectedIndexChanged += new System.EventHandler(this.serial_read_way_SelectedIndexChanged);
             // 
             // label8
             // 

@@ -6,13 +6,10 @@ using System.Windows.Forms;
 using System.IO.Ports;
 using 上位机;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
 using NPOI.HSSF.UserModel;
 using System.IO;
-using System.Text;
-//using OpenCvSharp;
-
+using OpenCvSharp;
+using OpenCvSharp.Extensions;
 namespace csharp窗体教学
 {
 
@@ -24,9 +21,7 @@ namespace csharp窗体教学
         {
             InitializeComponent();
            
-
         }
-     
         private void button1_Click(object sender, EventArgs e)
         {
             richTextBox_1.Text = "";
@@ -701,7 +696,7 @@ namespace csharp窗体教学
                 g.DrawLine(p_2, 0, (drawingxox_h / 10) * (i + 1), drawingxox_w, (drawingxox_h / 10) * (i + 1));
                 g.DrawString(((double)(drawingxox_w * (1 + i) * 0.1 + cross_border) * x_speed / 1000).ToString(decimal_point[time_shaft_point]), DefaultFont, solid, (drawingxox_w / 10) * (i + 1), drawingxox_h + 5); //时间轴
                 g.DrawString((var_min + (var_max - var_min) * (double)(10 - (i + 1)) * 0.1).ToString(decimal_point[data_shaft_point]), DefaultFont, solid, drawingxox_w + 3, (drawingxox_h / 10) * (i + 1));//数据轴
-                                                                                                                                                                                                            // g.DrawString((var_min + (var_max - var_min) / 10 * (double)(10 - (i + 1))).ToString(decimal_point[data_shaft_point]), DefaultFont, solid, drawingxox_w + 3, (drawingxox_h / 10) * (i + 1));//数据轴
+                                                                                                                                                                                                           
             }
 
             g.DrawRectangle(p_1, 0, 0, drawingxox_w, drawingxox_h);
@@ -801,7 +796,6 @@ namespace csharp窗体教学
                 g.DrawLine(p_2, 0, (drawingxox_h / 10) * (i + 1), drawingxox_w, (drawingxox_h / 10) * (i + 1));
                 g.DrawString((var_min_sdx + (var_max_sdx - var_min_sdx) * (1 + i) * 0.1).ToString(decimal_point[time_shaft_point]), DefaultFont, solid, (drawingxox_w / 10) * (i + 1), drawingxox_h + 5); //时间轴
                 g.DrawString((var_min_sdy + (var_max_sdy - var_min_sdy) * (double)(10 - (i + 1)) * 0.1).ToString(decimal_point[data_shaft_point]), DefaultFont, solid, drawingxox_w + 3, (drawingxox_h / 10) * (i + 1));//数据轴
-                                                                                                                                                                                                                        // g.DrawString((var_min + (var_max - var_min) / 10 * (double)(10 - (i + 1))).ToString(decimal_point[data_shaft_point]), DefaultFont, solid, drawingxox_w + 3, (drawingxox_h / 10) * (i + 1));//数据轴
             }
 
             g.DrawRectangle(p_1, 0, 0, drawingxox_w, drawingxox_h);
@@ -1077,7 +1071,6 @@ namespace csharp窗体教学
             {
                 btn_excel.Text = "暂停记录";
                 excel_record = true;
-
             }
             else
             {
@@ -1128,6 +1121,34 @@ namespace csharp窗体教学
                 pictureBox4.Visible = true;
             }
            
+        }
+
+
+        static VideoCapture capture=new VideoCapture(@"E:\视频素材\西门子SGT-750燃气轮机.mp4");
+        static bool isopen = false;
+        static Mat image = new Mat();//只使用一个副本
+        private void pictureBox5_Paint(object sender, PaintEventArgs e)
+        {
+            if (isopen)
+            {
+                capture.Read(image);
+                if (image.Empty())
+                {
+                    isopen = !isopen;
+                }
+                else
+                {
+                    int sleepTime = (int)Math.Round(1000 / capture.Fps);
+                    pictureBox5.BackgroundImage = image.ToBitmap();
+                    Cv2.WaitKey(sleepTime);
+                }
+            }
+        }
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+
+            isopen = !isopen;
+            pictureBox5.Refresh();//马上刷新
         }
 
     }
