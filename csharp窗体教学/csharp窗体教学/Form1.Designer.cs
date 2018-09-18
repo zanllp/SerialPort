@@ -1,4 +1,4 @@
-﻿namespace csharp窗体教学
+﻿namespace 上位机
 {
     partial class Form1
     {
@@ -58,18 +58,13 @@
             this.SB1 = new System.Windows.Forms.ToolStripMenuItem();
             this.SB15 = new System.Windows.Forms.ToolStripMenuItem();
             this.SB2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.更新ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.官网ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.版本ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pwm的使用方法ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.label_COM = new System.Windows.Forms.Label();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.checkBox_keepscroll = new System.Windows.Forms.CheckBox();
             this.richTextBox_1 = new System.Windows.Forms.RichTextBox();
-            this.button_open_serial = new System.Windows.Forms.Button();
+            this.open_serial_btn = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label_pwm = new System.Windows.Forms.Label();
@@ -81,13 +76,13 @@
             this.checkBox_autoempty = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button6 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.data_vz = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.scatter_diagram = new System.Windows.Forms.TabPage();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.OpenCV = new System.Windows.Forms.TabPage();
-            this.button5 = new System.Windows.Forms.Button();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.label6 = new System.Windows.Forms.Label();
@@ -103,7 +98,7 @@
             this.label_excel_record_val = new System.Windows.Forms.Label();
             this.btn5 = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.button6 = new System.Windows.Forms.Button();
+            this.open_draw_btn = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -155,8 +150,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem4,
             this.toolStripMenuItem1,
-            this.toolStripMenuItem2,
-            this.关于ToolStripMenuItem});
+            this.toolStripMenuItem2});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -369,46 +363,6 @@
             this.SB2.Text = "2";
             this.SB2.Click += new System.EventHandler(this.SB2_Click);
             // 
-            // 关于ToolStripMenuItem
-            // 
-            this.关于ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.更新ToolStripMenuItem,
-            this.官网ToolStripMenuItem,
-            this.版本ToolStripMenuItem,
-            this.pwm的使用方法ToolStripMenuItem});
-            this.关于ToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(54, 25);
-            this.关于ToolStripMenuItem.Text = "关于";
-            // 
-            // 更新ToolStripMenuItem
-            // 
-            this.更新ToolStripMenuItem.Name = "更新ToolStripMenuItem";
-            this.更新ToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
-            this.更新ToolStripMenuItem.Text = "更新";
-            this.更新ToolStripMenuItem.Click += new System.EventHandler(this.更新ToolStripMenuItem_Click);
-            // 
-            // 官网ToolStripMenuItem
-            // 
-            this.官网ToolStripMenuItem.Name = "官网ToolStripMenuItem";
-            this.官网ToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
-            this.官网ToolStripMenuItem.Text = "官网";
-            this.官网ToolStripMenuItem.Click += new System.EventHandler(this.官网ToolStripMenuItem_Click);
-            // 
-            // 版本ToolStripMenuItem
-            // 
-            this.版本ToolStripMenuItem.Name = "版本ToolStripMenuItem";
-            this.版本ToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
-            this.版本ToolStripMenuItem.Text = "版本";
-            this.版本ToolStripMenuItem.Click += new System.EventHandler(this.版本ToolStripMenuItem_Click);
-            // 
-            // pwm的使用方法ToolStripMenuItem
-            // 
-            this.pwm的使用方法ToolStripMenuItem.Name = "pwm的使用方法ToolStripMenuItem";
-            this.pwm的使用方法ToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
-            this.pwm的使用方法ToolStripMenuItem.Text = "pwm的使用方法";
-            this.pwm的使用方法ToolStripMenuItem.Click += new System.EventHandler(this.pwm的使用方法ToolStripMenuItem_Click);
-            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -465,21 +419,21 @@
             this.richTextBox_1.Text = "";
             this.richTextBox_1.TextChanged += new System.EventHandler(this.richTextBox_1_TextChanged);
             // 
-            // button_open_serial
+            // open_serial_btn
             // 
-            this.button_open_serial.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.button_open_serial.FlatAppearance.BorderSize = 0;
-            this.button_open_serial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_open_serial.Font = new System.Drawing.Font("微软雅黑 Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button_open_serial.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_open_serial.Location = new System.Drawing.Point(0, 415);
-            this.button_open_serial.Name = "button_open_serial";
-            this.button_open_serial.Size = new System.Drawing.Size(93, 37);
-            this.button_open_serial.TabIndex = 11;
-            this.button_open_serial.Text = "打开串口";
-            this.button_open_serial.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_open_serial.UseVisualStyleBackColor = false;
-            this.button_open_serial.Click += new System.EventHandler(this.button_open_serial_Click);
+            this.open_serial_btn.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.open_serial_btn.FlatAppearance.BorderSize = 0;
+            this.open_serial_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.open_serial_btn.Font = new System.Drawing.Font("微软雅黑 Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.open_serial_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.open_serial_btn.Location = new System.Drawing.Point(0, 415);
+            this.open_serial_btn.Name = "open_serial_btn";
+            this.open_serial_btn.Size = new System.Drawing.Size(93, 37);
+            this.open_serial_btn.TabIndex = 11;
+            this.open_serial_btn.Text = "打开串口";
+            this.open_serial_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.open_serial_btn.UseVisualStyleBackColor = false;
+            this.open_serial_btn.Click += new System.EventHandler(this.button_open_serial_Click);
             // 
             // button3
             // 
@@ -616,6 +570,15 @@
             this.tabPage1.Text = "串口调试";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(1017, 504);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 25;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
             // button4
             // 
             this.button4.BackColor = System.Drawing.SystemColors.Highlight;
@@ -673,7 +636,6 @@
             // 
             // OpenCV
             // 
-            this.OpenCV.Controls.Add(this.button5);
             this.OpenCV.Controls.Add(this.pictureBox5);
             this.OpenCV.Location = new System.Drawing.Point(4, 29);
             this.OpenCV.Name = "OpenCV";
@@ -681,16 +643,6 @@
             this.OpenCV.TabIndex = 3;
             this.OpenCV.Text = "OpenCV";
             this.OpenCV.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(1005, 526);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 30);
-            this.button5.TabIndex = 1;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click_1);
             // 
             // pictureBox5
             // 
@@ -865,15 +817,21 @@
             this.btn5.UseVisualStyleBackColor = false;
             this.btn5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // button6
+            // open_draw_btn
             // 
-            this.button6.Location = new System.Drawing.Point(925, 552);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 25;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.open_draw_btn.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.open_draw_btn.FlatAppearance.BorderSize = 0;
+            this.open_draw_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.open_draw_btn.Font = new System.Drawing.Font("微软雅黑 Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.open_draw_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.open_draw_btn.Location = new System.Drawing.Point(0, 372);
+            this.open_draw_btn.Name = "open_draw_btn";
+            this.open_draw_btn.Size = new System.Drawing.Size(93, 37);
+            this.open_draw_btn.TabIndex = 39;
+            this.open_draw_btn.Text = "开启绘图";
+            this.open_draw_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.open_draw_btn.UseVisualStyleBackColor = false;
+            this.open_draw_btn.Click += new System.EventHandler(this.open_draw_btn_Click);
             // 
             // Form1
             // 
@@ -881,12 +839,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1260, 677);
+            this.Controls.Add(this.open_draw_btn);
             this.Controls.Add(this.btn5);
             this.Controls.Add(this.label_excel_record_val);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.btn_excel);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button_open_serial);
+            this.Controls.Add(this.open_serial_btn);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label_BR);
             this.Controls.Add(this.label_COM);
@@ -948,10 +907,6 @@
         private System.Windows.Forms.ToolStripMenuItem br56000;
         private System.Windows.Forms.ToolStripMenuItem br115200;
         private System.Windows.Forms.ToolStripMenuItem 停止位ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 更新ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 官网ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 版本ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Timer timer1;
         private System.IO.Ports.SerialPort serialPort1;
@@ -966,7 +921,7 @@
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.CheckBox checkBox_keepscroll;
         private System.Windows.Forms.RichTextBox richTextBox_1;
-        private System.Windows.Forms.Button button_open_serial;
+        private System.Windows.Forms.Button open_serial_btn;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label label_pwm;
@@ -976,7 +931,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBox_autoempty;
-        private System.Windows.Forms.ToolStripMenuItem pwm的使用方法ToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage data_vz;
@@ -1001,8 +955,8 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.TabPage OpenCV;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button open_draw_btn;
     }
 }
 
