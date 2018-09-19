@@ -307,6 +307,7 @@ namespace 上位机
 
         private void button_open_serial_Click(object sender, EventArgs e)
         {
+           
             if (open_serial_btn.Text == "打开串口")
             {
                 if (serialPort1.PortName != "未指定")
@@ -314,7 +315,16 @@ namespace 上位机
                     if (serialPort1.IsOpen == false)
                     {
                         open_serial_btn.Text = "关闭串口";
-                        serialPort1.Open();
+                        try
+                        {
+                            serialPort1.Open();
+                        }
+                        catch (Exception err)//被占用
+                        {
+                            open_serial_btn.Text = "打开串口";
+                            MessageBox.Show(err.ToString());
+                        }
+                       
                         UM_print("打开串口"+ serialPort1.PortName.ToString());
                         UM_print("串口状态：" + serialPort1.IsOpen.ToString());
                     }
@@ -400,11 +410,11 @@ namespace 上位机
         public double var_min_sdx;
         public double var_max_sdy;
         public double var_min_sdy;
-
+        public int counter_100ms;//100ms计数器，每一百ms++
         //除画图外都使用这个100ms计时器
         private void timer1_Tick(object sender, EventArgs e)
         {
-          
+            counter_100ms++;
             //************************读取另外一个窗口的设置**********************************/
             auto_limit = form2.auto_limit_0;
             if (!auto_limit || !auto_limit_temp)
@@ -421,11 +431,10 @@ namespace 上位机
             time_shaft_point = form2.time_shaft_point_0;
             data_shaft_point = form2.data_shaft_point_0;
             point_size = form2.point_size_0;
-            //********************************************************************************/
+            //*****************************右边的串口信息更新**************************************/
             label_BR.Text = "波特率：" +'\n'+ serialPort1.BaudRate.ToString();
             label_COM.Text = "COM口：" + '\n' + serialPort1.PortName;
-            label5.Text = "串口延时：" + '\n' + serial_read_dealy.ToString()+"ms";
-            // richTextBox_1.Text = richTextBox_1.Text+  "正在使用的串口：" +DateTime.Now.ToString()+'\n'  ;
+            label5.Text = "串口延时：" + '\n' + serial_read_dealy.ToString() + "ms";
             //*****************************COM口选择*****************************************/
             if (SerialPort.GetPortNames().Count() == 0)//但没有连接东西的时候清空所有item成员
             {
@@ -458,8 +467,6 @@ namespace 上位机
                     }
                 }
             }
-
-
             //**************************自动生成pwm代码并发射*******************************//
             if (checkBox_pwm.Checked)
             {
@@ -472,8 +479,13 @@ namespace 上位机
                 }
 
             }
-            //*******************************************************************************/
-
+            //**************************循环发送********************************/
+            if (loop_print.Checked&&counter_100ms%loop_print_interval.Value==0)//点击了循环发送且100ms计数器取余为0
+            {
+                checkBox_autoempty.Checked = false;//循环发送的时候不能空
+                serial_println(richTextBox2.Text);
+            }
+            //************************************************************************/
         }
 
         //**************************将串口收到的数据进行分割******************************/
@@ -1128,6 +1140,22 @@ namespace 上位机
             }
             data_vz.Refresh();
             scatter_diagram.Refresh();
+        }
+
+        private void loop_print_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked)
+            {
+                checkBox_autoempty.Checked = false;
+            }
+        }
+
+        private void checkBox_autoempty_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked)
+            {
+                loop_print.Checked = false;
+            }
         }
     }
 }

@@ -76,6 +76,7 @@
             this.checkBox_autoempty = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.show_line_num = new System.Windows.Forms.CheckBox();
             this.button4 = new System.Windows.Forms.Button();
             this.data_vz = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -98,7 +99,9 @@
             this.btn5 = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.open_draw_btn = new System.Windows.Forms.Button();
-            this.show_line_num = new System.Windows.Forms.CheckBox();
+            this.loop_print = new System.Windows.Forms.CheckBox();
+            this.loop_print_interval = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -113,6 +116,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loop_print_interval)).BeginInit();
             this.SuspendLayout();
             // 
             // label_BR
@@ -132,9 +136,9 @@
             this.button1.BackColor = System.Drawing.SystemColors.Highlight;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button1.Location = new System.Drawing.Point(648, 498);
+            this.button1.Location = new System.Drawing.Point(825, 494);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 33);
+            this.button1.Size = new System.Drawing.Size(85, 33);
             this.button1.TabIndex = 1;
             this.button1.Text = "清空输出";
             this.button1.UseVisualStyleBackColor = false;
@@ -440,9 +444,9 @@
             this.button3.BackColor = System.Drawing.SystemColors.Highlight;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(761, 498);
+            this.button3.Location = new System.Drawing.Point(916, 495);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(96, 32);
+            this.button3.Size = new System.Drawing.Size(85, 32);
             this.button3.TabIndex = 13;
             this.button3.Text = "清空输入";
             this.button3.UseVisualStyleBackColor = false;
@@ -530,12 +534,13 @@
             this.checkBox_autoempty.AutoSize = true;
             this.checkBox_autoempty.Checked = true;
             this.checkBox_autoempty.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_autoempty.Location = new System.Drawing.Point(460, 503);
+            this.checkBox_autoempty.Location = new System.Drawing.Point(481, 503);
             this.checkBox_autoempty.Name = "checkBox_autoempty";
             this.checkBox_autoempty.Size = new System.Drawing.Size(140, 24);
             this.checkBox_autoempty.TabIndex = 23;
             this.checkBox_autoempty.Text = "发送后清空输入框";
             this.checkBox_autoempty.UseVisualStyleBackColor = true;
+            this.checkBox_autoempty.CheckedChanged += new System.EventHandler(this.checkBox_autoempty_CheckedChanged);
             // 
             // tabControl1
             // 
@@ -553,6 +558,9 @@
             // tabPage1
             // 
             this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.loop_print_interval);
+            this.tabPage1.Controls.Add(this.loop_print);
             this.tabPage1.Controls.Add(this.show_line_num);
             this.tabPage1.Controls.Add(this.button4);
             this.tabPage1.Controls.Add(this.richTextBox_1);
@@ -569,6 +577,18 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "串口调试";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // show_line_num
+            // 
+            this.show_line_num.AutoSize = true;
+            this.show_line_num.Checked = true;
+            this.show_line_num.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.show_line_num.Location = new System.Drawing.Point(342, 539);
+            this.show_line_num.Name = "show_line_num";
+            this.show_line_num.Size = new System.Drawing.Size(112, 24);
+            this.show_line_num.TabIndex = 25;
+            this.show_line_num.Text = "显示接收行数";
+            this.show_line_num.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
@@ -823,17 +843,48 @@
             this.open_draw_btn.UseVisualStyleBackColor = false;
             this.open_draw_btn.Click += new System.EventHandler(this.open_draw_btn_Click);
             // 
-            // show_line_num
+            // loop_print
             // 
-            this.show_line_num.AutoSize = true;
-            this.show_line_num.Checked = true;
-            this.show_line_num.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.show_line_num.Location = new System.Drawing.Point(342, 539);
-            this.show_line_num.Name = "show_line_num";
-            this.show_line_num.Size = new System.Drawing.Size(84, 24);
-            this.show_line_num.TabIndex = 25;
-            this.show_line_num.Text = "显示行数";
-            this.show_line_num.UseVisualStyleBackColor = true;
+            this.loop_print.AutoSize = true;
+            this.loop_print.Location = new System.Drawing.Point(481, 539);
+            this.loop_print.Name = "loop_print";
+            this.loop_print.Size = new System.Drawing.Size(134, 24);
+            this.loop_print.TabIndex = 26;
+            this.loop_print.Text = "循环发送  间隔（";
+            this.loop_print.UseVisualStyleBackColor = true;
+            this.loop_print.CheckedChanged += new System.EventHandler(this.loop_print_CheckedChanged);
+            // 
+            // loop_print_interval
+            // 
+            this.loop_print_interval.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.loop_print_interval.Location = new System.Drawing.Point(614, 541);
+            this.loop_print_interval.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.loop_print_interval.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.loop_print_interval.Name = "loop_print_interval";
+            this.loop_print_interval.Size = new System.Drawing.Size(58, 22);
+            this.loop_print_interval.TabIndex = 27;
+            this.loop_print_interval.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(673, 540);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 20);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "00ms)";
             // 
             // Form1
             // 
@@ -883,6 +934,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loop_print_interval)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -959,6 +1011,9 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Button open_draw_btn;
         private System.Windows.Forms.CheckBox show_line_num;
+        private System.Windows.Forms.CheckBox loop_print;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown loop_print_interval;
     }
 }
 
