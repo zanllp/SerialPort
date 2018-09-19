@@ -76,7 +76,6 @@
             this.checkBox_autoempty = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button6 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.data_vz = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -99,6 +98,7 @@
             this.btn5 = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.open_draw_btn = new System.Windows.Forms.Button();
+            this.show_line_num = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -553,7 +553,7 @@
             // tabPage1
             // 
             this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tabPage1.Controls.Add(this.button6);
+            this.tabPage1.Controls.Add(this.show_line_num);
             this.tabPage1.Controls.Add(this.button4);
             this.tabPage1.Controls.Add(this.richTextBox_1);
             this.tabPage1.Controls.Add(this.groupBox1);
@@ -569,15 +569,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "串口调试";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(1017, 504);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 25;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
@@ -833,6 +824,18 @@
             this.open_draw_btn.UseVisualStyleBackColor = false;
             this.open_draw_btn.Click += new System.EventHandler(this.open_draw_btn_Click);
             // 
+            // show_line_num
+            // 
+            this.show_line_num.AutoSize = true;
+            this.show_line_num.Checked = true;
+            this.show_line_num.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.show_line_num.Location = new System.Drawing.Point(342, 539);
+            this.show_line_num.Name = "show_line_num";
+            this.show_line_num.Size = new System.Drawing.Size(84, 24);
+            this.show_line_num.TabIndex = 25;
+            this.show_line_num.Text = "显示行数";
+            this.show_line_num.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -955,8 +958,8 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.TabPage OpenCV;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button open_draw_btn;
+        private System.Windows.Forms.CheckBox show_line_num;
     }
 }
 

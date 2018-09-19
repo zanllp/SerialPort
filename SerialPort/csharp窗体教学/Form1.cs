@@ -7,10 +7,10 @@ using System.IO.Ports;
 using System.Threading;
 using NPOI.HSSF.UserModel;
 using System.IO;
-using OpenCvSharp;
-using OpenCvSharp.Extensions;
-using System.Collections.Generic;
-using Newtonsoft.Json;
+//using OpenCvSharp;
+//using OpenCvSharp.Extensions;
+//using System.Collections.Generic;
+//using Newtonsoft.Json;
 namespace 上位机
 {
 
@@ -52,7 +52,7 @@ namespace 上位机
             workbook2003.CreateSheet("散点图");
             workbook2003.CreateSheet("数据可视化"); //新建1个Sheet工作表 
              //**********************多线程***************************/
-            //CheckForIllegalCrossThreadCalls = false;
+            CheckForIllegalCrossThreadCalls = false;//注意勿动
             /*Thread thread = new Thread(new ThreadStart(Method1));
             thread.IsBackground = true;
             thread.Start();
@@ -288,10 +288,18 @@ namespace 上位机
         //***********************************格式化输出***************************************************/
         private void UM_print(string a)//upper monitor 上位机
         {
+            if (show_line_num.Checked == true)
+            {
+                a = line_num.ToString() + "   " + a;
+            }
             richTextBox_1.AppendText("[" + DateTime.Now.ToString("t") + "]" + "上位机:" + a + '\n');
         }
         private void LM_print(string a)//upper monitor 上位机
         {
+            if (show_line_num.Checked==true)
+            {
+                a = line_num.ToString() + "   " + a;
+            }
             richTextBox_1.AppendText(a);//追加会滚动
                                         // richTextBox_1.Text += a;
                                         /*richTextBox_1.Text +="[" + DateTime.Now.ToString("t") + "]" + "下位机:" + a +'\n';*/
@@ -831,6 +839,7 @@ namespace 上位机
         public int serial_read_dealy = 100;
         public Double time_temp = 0;
         public bool line_var_first = true;
+        public int line_num = 0;//接收到多少行
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)//对于串口要接收大量数据不能用定时获取的方式
         {
 
@@ -838,6 +847,7 @@ namespace 上位机
 
             if (serialPort1.IsOpen)//serialPort1.IsOpen&&serial_temp!=""
             {
+                line_num++;
                 serial = serialPort1.ReadExisting();
                 serialPort1.DiscardInBuffer();//记得清空串口，不然容易留到下次接收导致乱码
                 LM_print(serial);
@@ -928,8 +938,8 @@ namespace 上位机
 
                         }
                     }
+
                 }
-               
 
                 //***********************************数据记录与保存****************************************************/
 
