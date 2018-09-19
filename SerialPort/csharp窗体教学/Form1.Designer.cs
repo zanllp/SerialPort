@@ -643,7 +643,6 @@
             this.pictureBox5.Size = new System.Drawing.Size(1141, 600);
             this.pictureBox5.TabIndex = 0;
             this.pictureBox5.TabStop = false;
-            this.pictureBox5.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox5_Paint);
             // 
             // timer2
             // 

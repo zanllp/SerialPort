@@ -77,6 +77,7 @@ namespace 上位机
             {
                 if (serialPort1.IsOpen)//如果在串口打开的时候切换
                 {
+                    open_serial_btn.Text = "打开串口";
                     UM_print("串口已关闭,在串口打开时无法切换");
                     checkBox_pwm.Checked = false;
                     serialPort1.Close();
@@ -288,11 +289,8 @@ namespace 上位机
         //***********************************格式化输出***************************************************/
         private void UM_print(string a)//upper monitor 上位机
         {
-            if (show_line_num.Checked == true)
-            {
-                a = line_num.ToString() + "   " + a;
-            }
-            richTextBox_1.AppendText("[" + DateTime.Now.ToString("t") + "]" + "上位机:" + a + '\n');
+           
+            richTextBox_1.AppendText("[" + DateTime.Now.ToString("t") + "]" + "上位机: " + a + '\n');
         }
         private void LM_print(string a)//upper monitor 上位机
         {
@@ -316,8 +314,8 @@ namespace 上位机
                     if (serialPort1.IsOpen == false)
                     {
                         open_serial_btn.Text = "关闭串口";
-                        UM_print("打开串口");
                         serialPort1.Open();
+                        UM_print("打开串口"+ serialPort1.PortName.ToString());
                         UM_print("串口状态：" + serialPort1.IsOpen.ToString());
                     }
                     else
@@ -437,6 +435,7 @@ namespace 上位机
                     serialPort1.Close();
                     serialPort1.PortName = "未指定";
                     UM_print("设备拔出，串口已关闭");
+                    open_serial_btn.Text = "打开串口";
                 }
             }
             else
@@ -1115,40 +1114,17 @@ namespace 上位机
         }
 
 
-      
-        private void pictureBox5_Paint(object sender, PaintEventArgs e)
-        {
-          
-              
-           
-        }
-    
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            using (Form form = new Form())
-            using (Label label = new Label())
-            {
-                System.Drawing.Size size = new System.Drawing.Size(20, 20);
-                label.Size = size;
-                label.Text = "hello world";
-                form.ShowDialog();
-            }
-                
-        }
-
-      
 
         private void open_draw_btn_Click(object sender, EventArgs e)
         {
             draw_open = !draw_open;
             if (draw_open)
             {
-                open_draw_btn.Text = "开启绘图";
+                open_draw_btn.Text = "关闭绘图";
             }
             else
             {
-                open_draw_btn.Text = "关闭绘图";
+                open_draw_btn.Text = "开启绘图";
             }
             data_vz.Refresh();
             scatter_diagram.Refresh();
