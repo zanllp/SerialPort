@@ -69,6 +69,7 @@ namespace 上位机
         }
         private void CustomItem_Click(object sender, EventArgs e)
         {
+            
             foreach (ToolStripMenuItem item in SelectCom.DropDownItems)
             {
                 item.Checked = false;
@@ -375,9 +376,7 @@ namespace 上位机
                 }
                 else
                 {
-
                     richTextBox2.Text = richTextBox2.Text.Replace("\n", "");//将回车变成空白
-
                 }
 
             }
@@ -977,8 +976,6 @@ namespace 上位机
                                 Sheet1.GetRow(0).CreateCell(1 + i * 3).SetCellValue("点" + i + "Y坐标");
                             }
                         }
-
-
                         excel_first_sd = !excel_first_sd;
                     }
                     for (int i = 0; i < sd_var; i++)
